@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/adrium/goheif"
+	"github.com/connectRN/goheif"
 )
 
 // Skip Writer for exif writing
@@ -65,6 +65,9 @@ func main() {
 		fmt.Fprintf(os.Stderr, "usage: heic2jpg <in-file> <out-file> \n")
 		os.Exit(1)
 	}
+
+	// Prevent frequent crashes when running in linux
+	goheif.SafeEncoding = true
 
 	fin, fout := flag.Arg(0), flag.Arg(1)
 	fi, err := os.Open(fin)
