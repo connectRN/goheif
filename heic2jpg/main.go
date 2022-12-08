@@ -66,6 +66,9 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Prevent frequent crashes when running in linux
+	goheif.SafeEncoding = true
+
 	fin, fout := flag.Arg(0), flag.Arg(1)
 	fi, err := os.Open(fin)
 	if err != nil {
